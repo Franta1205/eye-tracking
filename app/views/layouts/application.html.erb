@@ -12,7 +12,11 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <% if user_signed_in? %>
+      <%= render "shared/topbar" %>
+    <% end %>
+    
+    <main class="<%= user_signed_in? ? 'mt-24' : 'mt-28' %> container mx-auto px-5 flex">
       <%= yield %>
     </main>
   </body>
