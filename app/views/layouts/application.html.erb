@@ -14,9 +14,10 @@
   <body>
     <% if user_signed_in? %>
       <%= render "shared/topbar" %>
+      <%= render "shared/sidebar" %>
     <% end %>
     
-    <main class="<%= user_signed_in? ? 'mt-24' : 'mt-28' %> container mx-auto px-5 flex">
+    <main class="<%= user_signed_in? ? 'ml-64 mt-16 p-8' : 'mt-28 container mx-auto px-5' %>">
       <%= yield %>
     </main>
   </body>
