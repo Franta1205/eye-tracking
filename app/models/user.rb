@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :profile
+  has_many :analyses
   
   attr_accessor :first_name, :last_name
   
