@@ -10,6 +10,13 @@ class User < ApplicationRecord
   attr_accessor :first_name, :last_name
   
   after_create :create_profile
+
+  enum user_type: {
+    classic: 0,
+    premium: 1,
+    enterprise: 2,
+    admin: 3,
+  }
   
   private
   
