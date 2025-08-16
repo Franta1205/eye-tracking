@@ -1,7 +1,7 @@
 class AnalysesController < ApplicationController
   def index
     if current_user.analyses.any?
-      render :show
+      redirect_to current_user.analyses.last
     end
   end
 
