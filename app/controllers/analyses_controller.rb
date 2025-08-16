@@ -1,5 +1,8 @@
 class AnalysesController < ApplicationController
   def index
+    if current_user.analyses.any?
+      render :show
+    end
   end
 
   def new

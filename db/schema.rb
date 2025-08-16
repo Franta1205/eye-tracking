@@ -16,9 +16,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_16_155054) do
 
   create_table "analyses", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "name"
-    t.integer "participants"
-    t.integer "analysis_type"
+    t.string "name", null: false
+    t.integer "participants", null: false
+    t.integer "analysis_type", null: false
     t.string "image"
     t.text "goals"
     t.datetime "created_at", null: false
