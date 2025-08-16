@@ -6,9 +6,17 @@ class AnalysesController < ApplicationController
   end
 
   def new
+    @analysis = Analysis.build
   end
 
   def create
+    @analysis = current_user.analyses.build(analyses_params)
+    
+    if @analysis.save
+      redirect_to @analysis, notice: 'Analysis was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
