@@ -2,7 +2,7 @@
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo and brand -->
-      <div class="flex items-center">
+      <%= link_to root_path, class: "flex items-center hover:opacity-80 transition-opacity" do %>
         <div class="h-10 w-10 bg-gray-900 rounded-xl flex items-center justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -11,7 +11,7 @@
           </svg>
         </div>
         <span class="ml-3 text-lg font-semibold text-gray-900">EyeTracking</span>
-      </div>
+      <% end %>
 
       <!-- Profile and actions -->
       <div class="flex items-center space-x-4">

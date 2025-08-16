@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  # Defines the root path route ("/")
   root "analyses#index"
-  # root "posts#index"
+  
+  resources :analyses, only: [:new, :create, :show]
+  
 end
