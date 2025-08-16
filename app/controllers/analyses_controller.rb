@@ -20,6 +20,7 @@ class AnalysesController < ApplicationController
   end
 
   def show
+    @analyses = Analysis.find(params[:id])
   end
 
   private
