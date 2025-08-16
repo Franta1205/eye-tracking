@@ -1,0 +1,94 @@
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="mb-8">
+      <div class="mt-2 flex items-center text-sm text-gray-600">
+        <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <span><%= @analysis.participants %> participants</span>
+        <span class="mx-2">/</span>
+        <span><%= @analysis.analysis_type.humanize %></span>
+      </div>
+    </div>
+
+    <!-- Images Section -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-8">
+      <h2 class="text-xl font-semibold text-gray-900 mb-6">Visual Comparison</h2>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Original Design -->
+        <div>
+          <h3 class="text-sm font-medium text-gray-700 mb-3">Original Design</h3>
+          <div class="relative rounded-lg overflow-hidden border border-gray-200 group">
+            <img src="https://images.unsplash.com/photo-1618788372246-79faff0c3742?w=800&h=600&fit=crop" 
+                 alt="Original Design" 
+                 class="w-full h-auto">
+            <a href="https://images.unsplash.com/photo-1618788372246-79faff0c3742?w=800&h=600&fit=crop" 
+               download="original-design.jpg"
+               class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white rounded-lg px-4 py-2 shadow-lg flex items-center text-sm font-medium text-gray-700 hover:text-gray-900">
+              <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Download
+            </a>
+          </div>
+        </div>
+
+        <!-- Heatmap -->
+        <div>
+          <h3 class="text-sm font-medium text-gray-700 mb-3">Eye Tracking Heatmap</h3>
+          <div class="relative rounded-lg overflow-hidden border border-gray-200 group">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" 
+                 alt="Heatmap Analysis" 
+                 class="w-full h-auto">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-green-500/30 to-red-500/40 mix-blend-multiply"></div>
+            <a href="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" 
+               download="heatmap-analysis.jpg"
+               class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white rounded-lg px-4 py-2 shadow-lg flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 z-10">
+              <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Feedback Section -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <h2 class="text-xl font-semibold text-gray-900 mb-6">AI Analysis & Recommendations</h2>
+      
+      <div class="prose prose-gray max-w-none">
+        <h3 class="text-lg font-medium text-gray-900 mb-3">Key Findings</h3>
+        <ul class="space-y-2 text-gray-700">
+          <li>Users spent 65% of their time focusing on the main call-to-action button, indicating strong visual hierarchy.</li>
+          <li>The navigation menu received minimal attention (8% average fixation time), suggesting it may need better visual prominence.</li>
+          <li>Heat concentration around the hero image shows effective use of visual elements to capture attention.</li>
+          <li>Bottom footer content was largely ignored, with less than 2% viewing time.</li>
+        </ul>
+
+        <h3 class="text-lg font-medium text-gray-900 mt-6 mb-3">Recommendations</h3>
+        <ul class="space-y-2 text-gray-700">
+          <li><strong>Enhance Navigation Visibility:</strong> Consider increasing the contrast or size of navigation elements to improve discoverability.</li>
+          <li><strong>Optimize Content Placement:</strong> Move important information from the footer to areas with higher engagement.</li>
+          <li><strong>Leverage Hot Zones:</strong> Place secondary CTAs near the primary focus areas to increase conversion opportunities.</li>
+          <li><strong>Simplify Visual Complexity:</strong> Reduce competing elements around key conversion points to maintain user focus.</li>
+        </ul>
+
+        <h3 class="text-lg font-medium text-gray-900 mt-6 mb-3">Overall Assessment</h3>
+        <p class="text-gray-700">
+          The eye tracking analysis reveals a generally effective design with clear visual hierarchy. The primary call-to-action successfully captures user attention, though opportunities exist to improve navigation visibility and content organization. The heatmap patterns suggest users follow a typical F-pattern reading behavior, which aligns well with web usability best practices.
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mt-8 flex gap-4">
+        <button class="px-6 py-3 rounded-lg text-sm font-medium text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors">
+          Download Report
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
