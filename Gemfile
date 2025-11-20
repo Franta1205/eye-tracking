@@ -70,5 +70,6 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+gem "kramdown", "~> 2.4"
 
 gem "dotenv-rails", "~> 3.1"

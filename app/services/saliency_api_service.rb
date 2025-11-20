@@ -2,7 +2,7 @@ require 'net/http'
 require 'uri'
 
 class SaliencyApiService
-  def self.call(image_file, participants, fixations = 6, tier = 'enterprise_light')
+  def self.call(image_file, participants, fixations = 6, tier = 'enterprise_light', metrics = 'shannon_entropy,visual_clarity,clutter_index,cognitive_load')
     api_url = ENV['NUROVISION_API'] + '/predict/'
     uri = URI(api_url)
 
@@ -13,7 +13,8 @@ class SaliencyApiService
       ['file', image_file, { filename: image_file.original_filename, content_type: image_file.content_type }],
       ['participants', participants.to_s],
       ['fixations', fixations.to_s],
-      ['tier', tier]
+      ['tier', tier],
+      ['metrics', metrics]
     ]
 
     request.set_form(form_data, 'multipart/form-data')

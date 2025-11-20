@@ -19,6 +19,9 @@ class AnalysesController < ApplicationController
           @analysis.participants
         )
         @analysis.image = api_response['saliency_map_url']
+        if api_response['analysis']
+          @analysis.ai_feedback = api_response['analysis']
+        end
       rescue => e
         @analysis.errors.add(:image, "Failed to process image: #{e.message}")
         render :new, status: :unprocessable_entity
