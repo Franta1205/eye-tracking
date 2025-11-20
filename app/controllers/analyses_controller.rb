@@ -11,8 +11,25 @@ class AnalysesController < ApplicationController
 
   def create
     @analysis = current_user.analyses.build(analyses_params)
-    @analysis.image = "jpg"
-    
+
+    if params[:analysis][:image].present?
+      begin
+        api_response = SaliencyApiService.call(
+          params[:analysis][:image],
+          @analysis.participants
+        )
+        @analysis.image = api_response['saliency_map_url']
+      rescue => e
+        @analysis.errors.add(:image, "Failed to process image: #{e.message}")
+        render :new, status: :unprocessable_entity
+        return
+      end
+    else
+      @analysis.errors.add(:image, "Image is required")
+      render :new, status: :unprocessable_entity
+      return
+    end
+
     if @analysis.save
       redirect_to @analysis, notice: 'Analysis was successfully created.'
     else
