@@ -35,7 +35,7 @@
             <%= form.hidden_field :participants, value: 1, required: true %>
 
             <!-- Custom slider interface -->
-            <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+            <div id="participant-slider-container" class="bg-gray-50 rounded-lg p-6 border border-gray-200">
               <div class="flex items-center justify-between mb-4">
                 <span class="text-sm text-gray-600">Drag to select:</span>
                 <span id="participant-count" class="text-lg font-semibold text-gray-900">1 participant</span>
@@ -43,7 +43,7 @@
 
               <div class="relative">
                 <!-- Slider track -->
-                <div class="w-full h-2 bg-gray-200 rounded-full relative">
+                <div id="slider-track" class="w-full h-2 bg-gray-200 rounded-full relative">
                   <div id="slider-fill" class="h-2 bg-gray-900 rounded-full transition-all duration-75" style="width: 0%"></div>
                 </div>
 
@@ -111,7 +111,8 @@
 
   // Participant slider functionality
   document.addEventListener('DOMContentLoaded', function() {
-    const sliderContainer = document.querySelector('.bg-gray-50.rounded-lg');
+    const sliderContainer = document.getElementById('participant-slider-container');
+    const sliderTrack = document.getElementById('slider-track');
     const sliderHandle = document.getElementById('slider-handle');
     const sliderFill = document.getElementById('slider-fill');
     const participantCount = document.getElementById('participant-count');
@@ -155,7 +156,7 @@
     // Mouse events
     sliderHandle.addEventListener('mousedown', function(e) {
       isDragging = true;
-      sliderRect = sliderContainer.querySelector('.w-full.h-2').getBoundingClientRect();
+      sliderRect = sliderTrack.getBoundingClientRect();
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
       e.preventDefault();
@@ -175,7 +176,7 @@
     }
 
     // Click on track to jump to position
-    sliderContainer.querySelector('.w-full.h-2').addEventListener('click', function(e) {
+    sliderTrack.addEventListener('click', function(e) {
       sliderRect = this.getBoundingClientRect();
       const percentage = getPercentageFromMouseX(e.clientX);
       updateSlider(percentage);
@@ -184,7 +185,7 @@
     // Touch events for mobile
     sliderHandle.addEventListener('touchstart', function(e) {
       isDragging = true;
-      sliderRect = sliderContainer.querySelector('.w-full.h-2').getBoundingClientRect();
+      sliderRect = sliderTrack.getBoundingClientRect();
       document.addEventListener('touchmove', handleTouchMove, { passive: false });
       document.addEventListener('touchend', handleTouchEnd);
       e.preventDefault();
