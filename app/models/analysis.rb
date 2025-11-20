@@ -1,6 +1,9 @@
 class Analysis < ApplicationRecord
   belongs_to :user
 
+  validates :name, presence: true
+  validates :participants, presence: true
+
   enum analysis_type: {
     general_design: 0,
     general_advertisement: 1,

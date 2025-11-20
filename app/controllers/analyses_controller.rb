@@ -26,6 +26,6 @@ class AnalysesController < ApplicationController
   private
 
   def analyses_params
-    params.require(:analysis).permit(:name, :participants, :analysis_type, :image, :goals)
+    params.require(:analysis).permit(:name, :participants, :analysis_type, :goals)
   end
 end
