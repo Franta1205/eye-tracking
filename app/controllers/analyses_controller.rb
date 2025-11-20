@@ -22,6 +22,12 @@ class AnalysesController < ApplicationController
         if api_response['analysis']
           @analysis.ai_feedback = api_response['analysis']
         end
+        if api_response['metrics']
+          @analysis.shannon_entropy = api_response['metrics']['shannon_entropy']
+          @analysis.visual_clarity = api_response['metrics']['visual_clarity']
+          @analysis.clutter_index = api_response['metrics']['clutter_index']
+          @analysis.cognitive_load = api_response['metrics']['cognitive_load']
+        end
       rescue => e
         @analysis.errors.add(:image, "Failed to process image: #{e.message}")
         render :new, status: :unprocessable_entity

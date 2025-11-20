@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_20_161710) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_20_181541) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_20_161710) do
     t.text "ai_feedback"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "shannon_entropy"
+    t.decimal "visual_clarity"
+    t.decimal "clutter_index"
+    t.decimal "cognitive_load"
     t.index ["user_id"], name: "index_analyses_on_user_id"
   end
 

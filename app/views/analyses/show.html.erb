@@ -37,6 +37,88 @@
       </div>
     </div>
 
+    <!-- Metrics Section -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-8">
+      <h2 class="text-xl font-semibold text-gray-900 mb-6">Visual Metrics</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center p-4 bg-gray-50 rounded-lg relative group">
+          <div class="text-2xl font-bold text-gray-900">
+            <%= @analysis.shannon_entropy.present? ? @analysis.shannon_entropy.round(2) : "-" %>
+          </div>
+          <div class="text-sm text-gray-600 mt-1 flex items-center justify-center">
+            Shannon Entropy
+            <svg class="w-4 h-4 ml-1 text-gray-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 w-64 bg-gray-900 text-white text-xs rounded-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
+            <strong>🧠 Shannon Entropy:</strong><br>
+            How spread out user attention is.<br>
+            • Low entropy → focused attention on a few elements<br>
+            • High entropy → scattered, unfocused gaze<br>
+            <strong>Use case:</strong> Detect whether a design pulls attention to key areas or diffuses it
+          </div>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg relative group">
+          <div class="text-2xl font-bold text-gray-900">
+            <%= @analysis.visual_clarity.present? ? @analysis.visual_clarity.round(2) : "-" %>
+          </div>
+          <div class="text-sm text-gray-600 mt-1 flex items-center justify-center">
+            Visual Clarity
+            <svg class="w-4 h-4 ml-1 text-gray-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 w-64 bg-gray-900 text-white text-xs rounded-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
+            <strong>🧼 Visual Clarity:</strong><br>
+            Signal-to-noise in saliency map. Ratio of high-saliency area to total image area.<br>
+            • High clarity → key elements stand out clearly<br>
+            • Low clarity → no single element dominates<br>
+            <strong>Use case:</strong> Test if hero sections, product photos, or CTAs are visually strong
+          </div>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg relative group">
+          <div class="text-2xl font-bold text-gray-900">
+            <%= @analysis.clutter_index.present? ? @analysis.clutter_index.round(2) : "-" %>
+          </div>
+          <div class="text-sm text-gray-600 mt-1 flex items-center justify-center">
+            Clutter Index
+            <svg class="w-4 h-4 ml-1 text-gray-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 w-64 bg-gray-900 text-white text-xs rounded-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
+            <strong>🧩 Clutter Index:</strong><br>
+            Visual complexity via edge density. Computed using Canny edge detection.<br>
+            • High clutter → likely distraction, visual overload<br>
+            • Low clutter → minimal, user-friendly designs<br>
+            <strong>Use case:</strong> Evaluate simplicity and reduce unnecessary detail
+          </div>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg relative group">
+          <div class="text-2xl font-bold text-gray-900">
+            <%= @analysis.cognitive_load.present? ? @analysis.cognitive_load.round(2) : "-" %>
+          </div>
+          <div class="text-sm text-gray-600 mt-1 flex items-center justify-center">
+            Cognitive Load
+            <svg class="w-4 h-4 ml-1 text-gray-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 w-64 bg-gray-900 text-white text-xs rounded-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
+            <strong>🌀 Cognitive Load:</strong><br>
+            Viewer effort based on number of attention clusters and entropy of saliency distribution.<br>
+            • High load → viewer has to process multiple areas<br>
+            <strong>Use case:</strong> Detect cognitive overwhelm, especially in dense interfaces
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- AI Feedback Section -->
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
       <h2 class="text-xl font-semibold text-gray-900 mb-6">AI Analysis & Recommendations</h2>
