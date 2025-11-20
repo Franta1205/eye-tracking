@@ -11,6 +11,7 @@ class AnalysesController < ApplicationController
 
   def create
     @analysis = current_user.analyses.build(analyses_params)
+    @analysis.image = "jpg"
     
     if @analysis.save
       redirect_to @analysis, notice: 'Analysis was successfully created.'
