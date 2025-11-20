@@ -3,6 +3,7 @@ class Analysis < ApplicationRecord
 
   validates :name, presence: true
   validates :participants, presence: true
+  validates :analysis_type, presence: true
 
   enum analysis_type: {
     general_design: 0,
