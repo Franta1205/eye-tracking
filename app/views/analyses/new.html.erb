@@ -3,7 +3,7 @@
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-8 py-10">
       <h2 class="text-2xl font-bold text-gray-900 mb-8">Create New Analysis</h2>
       
-      <%= form_with(model: @analysis, local: true, html: { class: "space-y-6" }) do |form| %>
+      <%= form_with(model: @analysis, local: true, html: { class: "space-y-6", id: "new_analysis" }) do |form| %>
         <% if @analysis.errors.any? %>
           <div class="rounded-lg bg-red-50 p-4 border border-red-200">
             <h3 class="text-sm font-medium text-red-800">Please fix the following errors:</h3>
@@ -91,8 +91,10 @@
         </div>
 
         <div class="pt-4">
-          <%= form.submit "Create Analysis", 
-              class: "w-full flex justify-center py-3 px-4 rounded-lg text-sm font-medium text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors cursor-pointer" %>
+          <%= form.submit "Create Analysis",
+              class: "w-full flex justify-center py-3 px-4 rounded-lg text-sm font-medium text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors cursor-pointer",
+              id: "submit-button",
+              data: { disable_with: "Creating Analysis..." } %>
         </div>
       <% end %>
     </div>
@@ -208,4 +210,30 @@
     // Initialize slider to minimum value
     updateSlider(0);
   });
+
+  // Loading spinner
+  const form = document.getElementById('new_analysis');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      // Check if image is selected
+      const imageInput = document.getElementById('image-upload');
+      if (!imageInput || !imageInput.files[0]) {
+        return; // Don't show spinner if no image selected
+      }
+
+      // Show loading overlay
+      const loadingOverlay = document.createElement('div');
+      loadingOverlay.id = 'loading-overlay';
+      loadingOverlay.className = 'fixed inset-0 flex items-center justify-center z-50';
+      loadingOverlay.innerHTML = `
+        <div class="bg-gray-900 rounded-xl shadow-2xl p-8 max-w-sm mx-4 text-center border border-gray-700">
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+          <h3 class="text-lg font-medium text-white mb-2">Processing Image</h3>
+          <p class="text-sm text-gray-300">Analyzing your image with AI saliency detection...</p>
+          <p class="text-xs text-gray-400 mt-2">This may take 30-60 seconds</p>
+        </div>
+      `;
+      document.body.appendChild(loadingOverlay);
+    });
+  }
 </script>
