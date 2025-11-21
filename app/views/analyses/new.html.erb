@@ -102,17 +102,30 @@
 </div>
 
 <script>
-  // Preview uploaded image
-  document.getElementById('image-upload').addEventListener('change', function(e) {
-    const fileName = e.target.files[0]?.name;
-    if (fileName) {
-      const label = e.target.nextElementSibling;
-      label.querySelector('p').textContent = fileName;
-    }
-  });
+  // Initialize all functionality
+  document.addEventListener('DOMContentLoaded', initializeAll);
+  document.addEventListener('turbo:load', initializeAll);
 
-  // Participant slider functionality
-  document.addEventListener('DOMContentLoaded', function() {
+  function initializeAll() {
+    initializeImageUpload();
+    initializeSlider();
+    initializeFormSubmit();
+  }
+
+  function initializeImageUpload() {
+    const imageUpload = document.getElementById('image-upload');
+    if (imageUpload) {
+      imageUpload.addEventListener('change', function(e) {
+        const fileName = e.target.files[0]?.name;
+        if (fileName) {
+          const label = e.target.nextElementSibling;
+          label.querySelector('p').textContent = fileName;
+        }
+      });
+    }
+  }
+
+  function initializeSlider() {
     const sliderContainer = document.getElementById('participant-slider-container');
     const sliderTrack = document.getElementById('slider-track');
     const sliderHandle = document.getElementById('slider-handle');
@@ -209,31 +222,32 @@
 
     // Initialize slider to minimum value
     updateSlider(0);
-  });
+  }
 
-  // Loading spinner
-  const form = document.getElementById('new_analysis');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      // Check if image is selected
-      const imageInput = document.getElementById('image-upload');
-      if (!imageInput || !imageInput.files[0]) {
-        return; // Don't show spinner if no image selected
-      }
+  function initializeFormSubmit() {
+    const form = document.getElementById('new_analysis');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        // Check if image is selected
+        const imageInput = document.getElementById('image-upload');
+        if (!imageInput || !imageInput.files[0]) {
+          return; // Don't show spinner if no image selected
+        }
 
-      // Show loading overlay
-      const loadingOverlay = document.createElement('div');
-      loadingOverlay.id = 'loading-overlay';
-      loadingOverlay.className = 'fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50';
-      loadingOverlay.innerHTML = `
-        <div class="bg-gray-900 rounded-xl shadow-2xl p-8 max-w-sm mx-4 text-center border border-gray-700">
-          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <h3 class="text-lg font-medium text-white mb-2">Processing Image</h3>
-          <p class="text-sm text-gray-300">Analyzing your image with AI saliency detection...</p>
-          <p class="text-xs text-gray-400 mt-2">This may take 30-60 seconds</p>
-        </div>
-      `;
-      document.body.appendChild(loadingOverlay);
-    });
+        // Show loading overlay
+        const loadingOverlay = document.createElement('div');
+        loadingOverlay.id = 'loading-overlay';
+        loadingOverlay.className = 'fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50';
+        loadingOverlay.innerHTML = `
+          <div class="bg-gray-900 rounded-xl shadow-2xl p-8 max-w-sm mx-4 text-center border border-gray-700">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+            <h3 class="text-lg font-medium text-white mb-2">Processing Image</h3>
+            <p class="text-sm text-gray-300">Analyzing your image with AI saliency detection...</p>
+            <p class="text-xs text-gray-400 mt-2">This may take 30-60 seconds</p>
+          </div>
+        `;
+        document.body.appendChild(loadingOverlay);
+      });
+    }
   }
 </script>
